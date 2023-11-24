@@ -1,0 +1,20 @@
+#footer{
+    background-color: #454545;
+    color: rgb(255, 165, 89);
+}
+
+
+#copy{
+    border-top: 1px solid rgba(255, 230, 199, 0.589);
+}
+
+#input-email{
+    height: 1.6rem;
+    border: none;
+    background-color: #FFA559;
+    
+}
+
+.btn-enviar{
+    height: 1.6rem;
+}

@@ -1,0 +1,40 @@
+.card-tareas{
+   background: #292929;
+   border: 5px inset #f36c18
+}
+
+.link {
+    color: #FF6000;
+}
+
+.header-card{
+    height: 40%;
+    padding: 6px;
+    /* clip-path: polygon(100% 0, 100% 38%, 100% 100%, 0 82%, 0 0); */
+    background-color: #2b2929;
+}
+
+.card-body{
+    height: 65%;
+}
+
+.texto-card{
+    font-size: 0.8rem;
+    color: #ffc8a7;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2
+}
+
+
+.img-card {
+    object-fit: cover;
+    height: 45%;
+}
+
+/* #card{
+
+} */
+
+

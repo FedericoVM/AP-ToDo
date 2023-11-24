@@ -1,0 +1,11 @@
+.header{
+    margin-bottom: 4rem;
+}
+#navBar{
+    background-color: #535353;
+}
+
+.navLink, #navbarScrollingDropdown{
+    color: #FFA559;
+}
+
