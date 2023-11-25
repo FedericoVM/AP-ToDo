@@ -12,7 +12,7 @@ const Header = () => {
         <div className='header'>
             <Navbar expand="lg" id='navBar' className='fixed-top'>
                 <Container fluid id='header'>
-                    <Navbar.Brand href="/">  <FontAwesomeIcon icon={faSquareCheck} flip size='2xl' style={{ color: "#ff6000", }} /> <p className='d-inline px-1 fw-bold'>AP To-Do</p></Navbar.Brand>
+                    <Navbar.Brand href="/">  <FontAwesomeIcon icon={faSquareCheck}  size='2xl' style={{ color: "#ff6000", }} /> <p className='d-inline px-1 fw-bold'>AP To-Do</p></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav

@@ -17,7 +17,6 @@ const Footer = () => {
             <div className="d-flex justify-content-center align-items-center">
               <FontAwesomeIcon
                 icon={faSquareCheck}
-                flip
                 size="2xl"
                 style={{ color: "#ff6000" }}
               />
