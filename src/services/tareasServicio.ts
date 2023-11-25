@@ -1,6 +1,6 @@
 import { Tarea } from "../types/Tareas";
 
-const BASE_URL: string = "http://localhost:3000";
+const BASE_URL: string = "https://ap-todo-backend.onrender.com";
 
 export const serviceApi = {
   traerTareas: async (): Promise<Tarea[]> => {
