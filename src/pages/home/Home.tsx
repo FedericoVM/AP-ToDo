@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ListaTareas from "../../components/ListaTareas/ListaTareas"
 import "./home.css"
-import { traerTareas } from "../../services/tareasServicio";
+import { serviceApi} from "../../services/tareasServicio";
 import { Tarea } from "../../types/Tareas";
 import Slider from "../../components/carousel/Slider";
 import "./home.css"
@@ -11,7 +11,7 @@ const Home = () => {
   const [tareas, setTareas] = useState<Tarea[]>([]);
 
   const mostrarTareas = async () => {
-    const resp = await traerTareas()
+    const resp = await serviceApi.traerTareas()
     setTareas(resp);
 
   }

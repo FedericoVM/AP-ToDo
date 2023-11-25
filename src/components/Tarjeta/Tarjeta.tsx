@@ -12,9 +12,9 @@ const Tarjeta = ({ t }:Props) => {
 
   return (
     <>
-      <Card className="card-tareas" style={{ width: '18rem', height:`21rem` }}>
+      <Card className="card-tareas" style={{ maxWidth: '18rem', height:`23rem` }}>
         <Card.Img variant="top" className="img-card" src={t.imagen} />
-        <Card.Body className="card-body">
+        <Card.Body className="card-body overflow-auto">
           <NavLink to={`/`+ t.id} className=" link text-decoration-none "> <Card.Title className="fs-6" >{t.titulo}</Card.Title> </NavLink>
           <Card.Text className="texto-card">
             {t.descripcion}

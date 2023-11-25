@@ -1,11 +1,11 @@
-type Estados  = "Por hacer" | "En producción" | "Por testear" | "Completada"
+type Estado  = "Por hacer" | "En producción" | "Por testear" | "Completada"
 
 export interface Tarea  {
-    id?:number;
+    id:number | undefined;
     descripcion:string;
     imagen:string;
     responsable:string;
     titulo:string;
     tiempo:number;
-    estado:Estados;
+    estado:Estado;
 }

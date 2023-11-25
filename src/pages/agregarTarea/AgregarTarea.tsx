@@ -7,15 +7,15 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { Tarea } from "../../types/Tareas";
-import { agregarTarea } from "../../services/tareasServicio";
+import {serviceApi } from "../../services/tareasServicio";
 import { useNavigate } from "react-router-dom";
-import "./agregarTarea.css"
 
 const AgregarTarea = () => {
 
   const navigate = useNavigate();
 
   const tarea: Tarea = {
+    id:undefined,
     titulo: "",
     descripcion: "",
     imagen: "",
@@ -35,7 +35,7 @@ const AgregarTarea = () => {
 
   const onSubmit = async (values: Tarea) => {
 
-    const nuevaTarea = await agregarTarea(values)
+    const nuevaTarea = await serviceApi.agregarTarea(values)
 
     if (nuevaTarea.id) {
       toast.success("La tarea se agrego correctamente")

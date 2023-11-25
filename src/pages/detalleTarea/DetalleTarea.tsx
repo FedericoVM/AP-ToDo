@@ -3,64 +3,72 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./detalleTarea.css";
 import Tarjeta from "../../components/Tarjeta/Tarjeta";
-import { editarTarea, eliminarTarea, traerTarea, traerTareas } from "../../services/tareasServicio";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Tarea } from "../../types/Tareas";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "sonner";
+import { serviceApi } from "../../services/tareasServicio";
+
 
 
 
 const DetalleTarea = () => {
 
-  const { id } = useParams();
+  const { id } =  useParams();
+
+
+  
 
   const navigate = useNavigate();
 
-  const [nuevoEstado, setNuevoEstado] = useState<Estado>();
 
-  const [tarea, setTarea] = useState<Tarea>("");
+
+  const [tarea, setTarea] = useState<Tarea>();
 
   const [tareasFiltradas, setTareasFiltradas] = useState<Tarea[]>([])
 
+  const [nuevoEstado, setNuevoEstado] = useState<string>("");
 
-  const mostrarTarea = async (id: string) => {
-    const resp = await traerTarea(id);
-    setTarea(resp);
+  const mostrarTarea = async () => {
+    const resp = await serviceApi.traerTarea(Number(id))
+    if (resp.id) {
+      setTarea(resp);
+    }
+    
 
   }
 
-  const borrarTarea = (id: string): void => {
-    eliminarTarea(id);
+  const borrarTarea = (): void => {
+    serviceApi.eliminarTarea(Number(id));
     toast.warning('La tarea fue eliminada')
     navigate("/")
 
   }
 
-  const cambiarEstado = async (id: string) => {
-
-    const resp = await traerTarea(id)
-    resp.estado = nuevoEstado;
-    await editarTarea(id, resp)
+  const cambiarEstado = async ()  => {
+    console.log(nuevoEstado);
+    const tareaActualizada = await serviceApi.editarTarea(Number(id), nuevoEstado)
+    setTarea(tareaActualizada)
     toast.success('El estado de la tarea se cambió correctamente')
     navigate("/")
 
   }
 
-  const tareasRelacionadas = async (id:string) => {
-    const resp = await traerTareas()
-    const data = await traerTarea(id);
-    const filtrado = resp.filter((t) => t.estado == data.estado)
+  const tareasRelacionadas = async () => {
+    const resp = await serviceApi.traerTareas()
+    const data = await serviceApi.traerTarea(Number(id));
+    const filtrado = resp.filter((t:Tarea) => t.estado == data.estado)
     setTareasFiltradas(filtrado)
 
   }
 
   useEffect(() => {
-    mostrarTarea(id);
-    tareasRelacionadas(id);
-  }, [])
+    mostrarTarea()
+    tareasRelacionadas();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
 
   return (
@@ -71,19 +79,19 @@ const DetalleTarea = () => {
             <Col lg={10} className="mx-auto">
               <div className="d-md-flex justify-content-md-center  h-100">
                 <Col>
-                  <Image src={tarea.imagen} className="h-100" fluid />
+                  <Image src={tarea?.imagen} className="h-100 img-fluid " fluid />
                 </Col>
                 <Col>
                   <Card className="border-none" id="card-detalles">
-                    <Card.Header as="h5" className="border-none fw-bold">{tarea.titulo}</Card.Header>
+                    <Card.Header as="h5" className="border-none fw-bold">{tarea?.titulo}</Card.Header>
                     <Card.Body className="h-100">
-                      <Card.Title>Tiempo: {tarea.tiempo} dias</Card.Title>
+                      <Card.Title>Tiempo: {tarea?.tiempo} dias</Card.Title>
                       <Card.Text>
-                        {tarea.descripcion}
+                        {tarea?.descripcion}
                       </Card.Text>
-                      <Card.Text>Responsable: {tarea.responsable}</Card.Text>
-                      <Card.Text>Estado: {tarea.estado}</Card.Text>
-                      <Form.Select className="my-3" onChange={(e) => {
+                      <Card.Text>Responsable: {tarea?.responsable}</Card.Text>
+                      <Card.Text>Estado: {tarea?.estado}</Card.Text>
+                      <Form.Select className="my-3" name="estado" onChange={(e) => {
                         setNuevoEstado(e.target.value);
                       }}>
                         <option>Selecionar estado...</option>
@@ -93,8 +101,8 @@ const DetalleTarea = () => {
                         <option value="Completada" >Completada</option>
                       </Form.Select>
                       <div className="w-75  mt-2 d-flex flex-column d-md-flex flex-md-row justify-content-md-around">
-                        <Button variant="primary" className="mb-2 mb-md-0" onClick={() => { cambiarEstado(tarea.id) }}>Cambiar estado</Button>
-                        <Button variant="danger" className="eliminar  " onClick={() => { borrarTarea(tarea.id) }}><FontAwesomeIcon icon={faTrash} size="lg" /></Button>
+                        <Button variant="primary" className="mb-2 mb-md-0" onClick={() => { cambiarEstado() }}>Cambiar estado</Button>
+                        <Button variant="danger" className="eliminar  " onClick={() => { borrarTarea() }}><FontAwesomeIcon icon={faTrash} size="lg" /></Button>
                       </div>
                     </Card.Body>
                   </Card>
