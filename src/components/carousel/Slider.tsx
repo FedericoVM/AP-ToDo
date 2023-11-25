@@ -12,7 +12,7 @@ const Slider = () => {
                 <Carousel className='carousel ' >
                     <Carousel.Item className='carousel-item' >
                         <img src={img_1} className='imagen-carousel d-block w-100 ' />
-                        <Carousel.Caption className='carousel-caption'>
+                        <Carousel.Caption className='carousel-caption d-none d-md-block'>
                             <h2>¡Hola! ¡Bienvenido!</h2>
                             <p>Aqui podrás tener tus pendientes bajo control y darles seguimientos</p>
                         </Carousel.Caption>
@@ -20,7 +20,7 @@ const Slider = () => {
 
                     <Carousel.Item >
                         <img src={img_2} className='imagen-carousel d-block w-100' />
-                        <Carousel.Caption className='carousel-caption' >
+                        <Carousel.Caption className='carousel-caption d-none d-md-block' >
                             <h2>Organiza tu vida</h2>
                             <p >Con nuestra herramienta podrás crear tarjetas de tareas, asignar fechas limites y mucho más</p>
                         </Carousel.Caption>
@@ -28,7 +28,7 @@ const Slider = () => {
 
                     <Carousel.Item>
                         <img src={img_3} className='imagen-carousel d-block w-100' />
-                        <Carousel.Caption className='carousel-caption'>
+                        <Carousel.Caption className='carousel-caption d-none d-md-block'>
                             <h2>¡Eleva tu productividad hoy mismo!</h2>
                             <p>
                                 Simplifica tu vida y aumenta tu productividad con nuestro sistema de gestion de tareas
