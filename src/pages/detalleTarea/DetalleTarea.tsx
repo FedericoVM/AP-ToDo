@@ -40,7 +40,7 @@ const DetalleTarea = () => {
 
   }
 
-  const borrarTarea = (): void => {
+  const borrarTarea = async (): Promise<void> => {
     serviceApi.eliminarTarea(Number(id));
     toast.warning('La tarea fue eliminada')
     navigate("/")
