@@ -18,9 +18,7 @@ const Home = () => {
 
   useEffect(() => {
     mostrarTareas()
-    console.log("Hollas");
-    
-  },[])
+  }, [])
 
 
 
