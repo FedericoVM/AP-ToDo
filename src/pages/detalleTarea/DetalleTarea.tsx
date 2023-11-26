@@ -41,14 +41,13 @@ const DetalleTarea = () => {
   }
 
   const borrarTarea = async (): Promise<void> => {
-    serviceApi.eliminarTarea(Number(id));
+    await serviceApi.eliminarTarea(Number(id));
     toast.warning('La tarea fue eliminada')
     navigate("/")
 
   }
 
   const cambiarEstado = async ()  => {
-    console.log(nuevoEstado);
     const tareaActualizada = await serviceApi.editarTarea(Number(id), nuevoEstado)
     setTarea(tareaActualizada)
     toast.success('El estado de la tarea se cambió correctamente')
